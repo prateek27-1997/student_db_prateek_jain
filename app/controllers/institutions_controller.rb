@@ -5,7 +5,8 @@ class InstitutionsController < ApplicationController
   # GET /institutions
   # GET /institutions.json
   def index
-    @institutions = Institution.all
+    search_term = params[:name]
+    @institutions = Institution.all.where("name LIKE :search", search: search_term)
   end
 
   # GET /institutions/1

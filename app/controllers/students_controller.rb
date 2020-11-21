@@ -2,18 +2,13 @@ class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
-  # GET /students
-  # GET /students.json
-  def index
-    if params[:search].blank?  
-    redirect_to(root_path, alert: "Empty field!") and return 
-   else
-    @parameter = params[:search].downcase  
-    @students = Student.all.where("lower(full_name) LIKE :search", search: @parameter) 
-  end
-end
+ def index
+  search_term = params[:full_name] 
+  @students = Student.all.where("full_name LIKE :search", search: search_term).sort(&:casecmp)
 
-  # GET /students/1
+ end
+
+ # GET /students/1
   # GET /students/1.json
   def show
   end
