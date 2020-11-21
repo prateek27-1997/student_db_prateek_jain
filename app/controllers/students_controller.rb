@@ -1,11 +1,10 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-
+  STUDENT_PER_PAGE = 1
  def index
   search_term = params[:full_name] 
-  @students = Student.all.where("full_name LIKE :search", search: search_term).sort(&:casecmp)
-
+  @students = Student.all.where("full_name LIKE :search", search: search_term).limit(STUDENT_PER_PAGE)
  end
 
  # GET /students/1
