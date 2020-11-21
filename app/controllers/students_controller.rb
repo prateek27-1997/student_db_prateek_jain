@@ -5,8 +5,13 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    if params[:search].blank?  
+    redirect_to(root_path, alert: "Empty field!") and return 
+   else
+    @parameter = params[:search].downcase  
+    @students = Student.all.where("lower(full_name) LIKE :search", search: @parameter) 
   end
+end
 
   # GET /students/1
   # GET /students/1.json
