@@ -1,7 +1,9 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  STUDENT_PER_PAGE = 1
+  helper_method :sort_column
+  STUDENT_PER_PAGE = 3
+ 
  def index
   search_term = params[:full_name] 
   @students = Student.all.where("full_name LIKE :search", search: search_term).limit(STUDENT_PER_PAGE)
@@ -65,6 +67,10 @@ class StudentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
+    end
+
+    def sort_column
+      Student.column_names.include?(params[:sort] ? params[:sort] : "full_name")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
