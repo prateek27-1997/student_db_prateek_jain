@@ -1,7 +1,7 @@
 class Institution < ApplicationRecord
-    has_many :students
+  has_many :students
 
-    def self.search(name)
-      Institution.where('name like :value', value: "%#{name}%")
-    end
+  def self.search(name)
+    Institution.where('name like :value', value: "%#{name}%")
+  end
 end

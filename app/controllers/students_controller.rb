@@ -1,16 +1,13 @@
 class StudentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:create]
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  helper_method :sort_column
   STUDENT_PER_PAGE = 3
  
- def index
-  @students = Student.all
- end
+  def index
+   @students = Student.all
+  end
 
- 
-
- # GET /students/1
+  # GET /students/1
   # GET /students/1.json
   def show
   end
@@ -76,6 +73,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:name, :address, :phone, :institution_id)
+      params.require(:student).permit(:name, :address, :mobile, :institution_id)
     end
 end
