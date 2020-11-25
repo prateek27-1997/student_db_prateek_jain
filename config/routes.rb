@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: 'registrations'}
-  root 'dashboard#index'
+  get 'home', :to => 'home#search'
   root to: "students#index"
-  namespace :api do
-    resources :students, only: [:create]
-  end
   resources :students
   resources :institutions
 end

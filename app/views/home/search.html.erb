@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+<h1>Students</h1>
+
+<table class='table'>
+<tbody>
+    <% @results.each do |item| %>
+      <tr>
+      	<td>Name:<%= item.name %></td>
+      	<td>Address:<%= item.address %></td>
+      	<td>Name:<%= item.name %></td>
+      	<td>Address:<%= item.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

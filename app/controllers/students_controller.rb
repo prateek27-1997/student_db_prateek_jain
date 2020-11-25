@@ -5,9 +5,10 @@ class StudentsController < ApplicationController
   STUDENT_PER_PAGE = 3
  
  def index
-  search_term = params[:full_name] 
-  @students = Student.all.where("full_name LIKE :search", search: search_term).limit(STUDENT_PER_PAGE)
+  @students = Student.all
  end
+
+ 
 
  # GET /students/1
   # GET /students/1.json
@@ -75,6 +76,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:full_name, :address, :phone, :institution_id)
+      params.require(:student).permit(:name, :address, :phone, :institution_id)
     end
 end

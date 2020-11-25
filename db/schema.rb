@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_064059) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "full_name"
+    t.string "name"
     t.text "address"
     t.string "email"
     t.string "mobile"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_064059) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "phone"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
